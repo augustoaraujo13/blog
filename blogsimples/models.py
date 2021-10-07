@@ -17,3 +17,5 @@ class Post(models.Model):
     #Quando haver atualização no post será mostrada.
     update = models.DateTimeField(auto_now=True)
     
+    def __str__(self) -> str:
+        return self.title
