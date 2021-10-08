@@ -8,3 +8,5 @@ from .models import Post
 #Classe que cria um mim resumo sobre os posts
 class PostAdmin(admin.ModelAdmin):
     list_display = ("title", "slug", "author", "created", "update")
+    #Poupula o campo slug com o titulo automaticamente.
+    prepopulated_fields = {"slug": ("title",)}
