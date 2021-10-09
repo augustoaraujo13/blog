@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 
 class Post(models.Model):
-    
+
     #Titulo do post.
     title = models.CharField(max_length=255)
     #Caminho da url do post.
@@ -16,6 +17,15 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     #Quando haver atualização no post será mostrada.
     update = models.DateTimeField(auto_now=True)
-    
+
+#Metodo que mostra o titulo
     def __str__(self) -> str:
         return self.title
+
+#Metodo que direnciona para uma url
+    def get_absolute_url(self):
+        return reverse("blogsimples:detail", kwargs={"slug": self.slug})
+    
+#Class que ordena a postagem para mais recente.
+    class Meta:
+        ordering = ("-created",)
