@@ -1,19 +1,63 @@
 {% extends 'blogsimples/base.html' %}
 
+{% load static %}
+
 {% block title %}Posts{% endblock title %}
 
 {% block content %}
+
+<!--Informação-->
+<div id="info-container">
+    <div class="container">
+        <br>
+        <div class="media" id="info">
+            <!-- 
+<img class="mr-3" src="/static/img/logo.png" id="blog-logo">
+            -->
+            <div class="media-body">
+                <div class="col-12">
+                </div>
+                <div class="col-12">
+                    <h2 class="main-title">MeuBlog seu blog de notícias</h2>
+                </div>
+                <p>
+                    MeuBlog site para você informar do que acontece no mundo,
+                    esportes, gastronomia, cultura,
+                    musicas e muito mais
+                </p>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+
+<!--Ultimas noticias-->
+
 {% for post in post_list %}
 <article>
+    <div id="card-posts">
+        <div class="container">
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="/media/{{post.image}}" alt="">
+                    <div class="card-body" id="card-post">
+                        <h4 class="card-title">{{post.title}}</h4>
 
-    <a href="{{post.get_absolute_url}}">
-        {{post.title}}
-    </a>
+                        <p class="date">
+                            Publicado em {{ post.created }} por {{ post.author }}
+                        </p>
 
-    <p class="date">
-        Publicado em {{ post.created }} por {{ post.author }}
-    </p>
-    {{post.body |linebreaks|truncatewords:10}}
+                        <p>
+                            {{post.body |linebreaks|truncatewords:10}}
+                        </p>
+
+                        <br>
+                        <a href="{{post.get_absolute_url}}" class="main-btn-info" target="_blank">Acesse</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </article>
 {% endfor %}

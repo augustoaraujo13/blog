@@ -7,6 +7,8 @@ class Post(models.Model):
 
     #Titulo do post.
     title = models.CharField(max_length=255)
+    #Inserir uma imagem ao post
+    image = models.ImageField(upload_to="posts/%Y/%m/%d", blank=True)
     #Caminho da url do post.
     slug = models.SlugField(max_length=255, unique=True)
     #Cria um campo para associar o post a um autor.
